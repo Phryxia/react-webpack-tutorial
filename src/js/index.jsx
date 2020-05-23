@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import HelloWorld from './components/test';
 
-const element = (
-	<HelloWorld name="THIS" />
-	);
+const numbers = [1, 2, 3, 4, 5];
+const listItems = numbers.map(number => {
+	return <li>{number}</li>
+});
+const element = (<ul>{listItems}</ul>);
 
 ReactDOM.render(element, document.getElementById("root"));
