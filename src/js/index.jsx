@@ -1,10 +1,38 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const numbers = [1, 2, 3, 4, 5];
-const listItems = numbers.map(number => {
-	return <li>{number}</li>
-});
-const element = (<ul>{listItems}</ul>);
+function Blog(props) {
+  const sidebar = (
+  	<ul>
+  	  {props.posts.map(post => 
+  	  	<li key={post.id}>
+  	  	  {post.title}
+  	  	</li>
+  	  )}
+  	</ul>
+  );
+
+  const content = props.posts.map(post =>
+  	<div key={post.id}>
+  	  <h3>{post.title}</h3>
+  	  <p>{post.content}</p>
+  	</div>
+  );
+
+  return (
+  	<div>
+  	  {sidebar}
+  	  <hr />
+  	  {content}
+  	</div>
+  );
+}
+
+const posts = [
+	{id: 1, title: 'Hello World', content: 'Welcome!'},
+	{id: 2, title: 'Installation', content: 'You can install'}
+];
+
+const element = (<Blog posts={posts} />);
 
 ReactDOM.render(element, document.getElementById("root"));
